@@ -1,6 +1,7 @@
 SOURCE = ../testbench/testbench.sv \
          ../design/CPU.sv \
-	     ../design/ProgramCounter.sv
+	     ../design/ProgramCounter.sv \
+	     ../mem/InstructionMemory.sv
 
 .PHONY: sim clean
 

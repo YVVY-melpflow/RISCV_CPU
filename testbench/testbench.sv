@@ -27,9 +27,19 @@ module tb_CPU;
   end
 
   /* CPU */
+  logic [31:0] w_imemAddr;
+  logic [31:0] w_imemData;
+
   CPU CPU (
-    .i_clock (clock ),
-    .i_resetn(resetn)
+    .i_clock   (clock     ),
+    .i_resetn  (resetn    ),
+    .i_imemData(w_imemData),
+    .o_imemAddr(w_imemAddr)
+  );
+
+  InstructionMemory InstructionMemory (
+    .i_addr    (w_imemAddr),
+    .o_data    (w_imemData)
   );
 
 endmodule // test

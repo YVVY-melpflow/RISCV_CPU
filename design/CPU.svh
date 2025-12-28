@@ -3,5 +3,6 @@
 
 // シミュレーション設定
 `define LOG_PC
+`define LOG_IMEM
 
 `endif // _CPU_SVH_
