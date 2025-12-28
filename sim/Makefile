@@ -7,8 +7,11 @@ SOURCE = ../testbench/testbench.sv \
 my_design: $(SOURCE)
 	iverilog -o my_design $(SOURCE) -I ../design -g 2012 -Wall | tee compile.log
 
-sim: my_design
+memdata:
+	./gen_memdata.sh > ../mem/imem.txt
+
+sim: my_design memdata
 	vvp my_design | tee sim.log
 
 clean:
-	rm -f my_design compile.log sim.log
+	rm -f my_design compile.log sim.log ../mem/imem.txt
