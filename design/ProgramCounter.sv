@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module ProgramCounter (
   input  logic        i_clock,
   input  logic        i_resetn,
