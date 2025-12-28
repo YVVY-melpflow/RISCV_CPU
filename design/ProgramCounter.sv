@@ -11,4 +11,12 @@ module ProgramCounter (
       o_PC <= o_PC + 32'h4;
     end
   end
+
+`ifdef LOG_PC
+  always @(posedge i_clock) begin
+    $write ("At time %t, PC = 0x%8h -> ", $time, o_PC);
+    $strobe("0x%8h", o_PC);
+  end
+`endif
+
 endmodule

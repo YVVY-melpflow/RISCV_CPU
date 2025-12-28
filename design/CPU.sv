@@ -1,3 +1,5 @@
+`include "CPU.svh"
+
 module CPU (
   input  logic i_clock,
   input  logic i_resetn
