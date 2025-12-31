@@ -1,18 +1,27 @@
 SOURCE = ../testbench/testbench.sv \
          ../design/CPU.sv \
 	     ../design/ProgramCounter.sv \
+	     ../design/Decoder.sv \
 	     ../mem/InstructionMemory.sv
 
-.PHONY: sim clean
+TEST = addi_sim.log
+
+.PHONY: sim run_tests clean
 
 my_design: $(SOURCE)
 	iverilog -o my_design $(SOURCE) -I ../design -g 2012 -Wall | tee compile.log
 
-memdata:
-	./gen_memdata.sh > ../mem/imem.txt
-
-sim: my_design memdata
+sim: my_design
 	vvp my_design | tee sim.log
 
+run_tests: $(TEST)
+
+%_sim.log: ../testcode/%.mem my_design
+	cp $< ../mem/imem.txt
+	vvp my_design | tee $@
+
+../testcode/%.mem:
+	make -C ../testcode $@
+
 clean:
-	rm -f my_design compile.log sim.log ../mem/imem.txt
+	rm -f my_design *.log ../mem/imem.txt
