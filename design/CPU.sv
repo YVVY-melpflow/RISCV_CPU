@@ -9,8 +9,10 @@ module CPU (
   output logic [31:0] o_imemAddr
 );
 
-  logic [31:0] w_PC   ;
-  logic [31:0] w_instr;
+  logic [31:0] w_PC     ;
+  logic [ 4:0] w_rs1Addr;
+  logic [ 4:0] w_rdAddr ;
+  logic [31:0] w_imm    ;
 
   ProgramCounter ProgramCounter (
     .i_clock  (i_clock ),
@@ -19,6 +21,13 @@ module CPU (
   );
 
   assign o_imemAddr = w_PC;
+
+  Decoder Decoder (
+    .i_instr  (i_imemData),
+    .o_rs1Addr(w_rs1Addr ),
+    .o_rdAddr (w_rdAddr  ),
+    .o_imm    (w_imm     )
+  );
 
 `ifdef LOG_IMEM
   always @(o_imemAddr) begin
