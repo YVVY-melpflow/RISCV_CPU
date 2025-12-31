@@ -1,3 +1,7 @@
 mem/imem.txt
 sim/*.log
 sim/my_design
+testcode/*.mem
+testcode/*.verimem
+testcode/*.S_out
+testcode/gen_memdata.out
