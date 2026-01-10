@@ -11,6 +11,7 @@ module CPU (
 
   logic [31:0] w_PC     ;
   logic [ 4:0] w_rs1Addr;
+  logic [31:0] w_rs1Data;
   logic [ 4:0] w_rdAddr ;
   logic [31:0] w_imm    ;
 
@@ -27,6 +28,12 @@ module CPU (
     .o_rs1Addr(w_rs1Addr ),
     .o_rdAddr (w_rdAddr  ),
     .o_imm    (w_imm     )
+  );
+
+  GPRegister GPRegister (
+    .i_resetn (i_resetn  ),
+    .i_rs1Addr(w_rs1Addr ),
+    .o_rs1Data(w_rs1Data )
   );
 
 `ifdef LOG_IMEM

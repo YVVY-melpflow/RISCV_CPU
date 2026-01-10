@@ -2,6 +2,7 @@ SOURCE = ../testbench/testbench.sv \
          ../design/CPU.sv \
 	     ../design/ProgramCounter.sv \
 	     ../design/Decoder.sv \
+	     ../design/GPRegister.sv \
 	     ../mem/InstructionMemory.sv
 
 TEST = addi_sim.log
