@@ -6,5 +6,6 @@
 `define LOG_IMEM
 `define LOG_DECODER
 `define LOG_GPR
+`define LOG_ALU
 
 `endif // _CPU_SVH_

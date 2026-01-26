@@ -2,3 +2,4 @@
 ../design/ProgramCounter.sv
 ../design/Decoder.sv
 ../design/GPRegister.sv
+../design/ALU.sv

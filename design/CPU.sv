@@ -14,6 +14,7 @@ module CPU (
   logic [31:0] w_rs1Data;
   logic [ 4:0] w_rdAddr ;
   logic [31:0] w_imm    ;
+  logic [31:0] w_result ;
 
   ProgramCounter ProgramCounter (
     .i_clock  (i_clock ),
@@ -34,6 +35,12 @@ module CPU (
     .i_resetn (i_resetn  ),
     .i_rs1Addr(w_rs1Addr ),
     .o_rs1Data(w_rs1Data )
+  );
+
+  ALU ALU (
+    .i_inA   (w_rs1Data ),
+    .i_inB   (w_imm     ),
+    .o_result(w_result  )
   );
 
 `ifdef LOG_IMEM
