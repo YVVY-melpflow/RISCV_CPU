@@ -10,6 +10,8 @@ module LogWriter (
   input  logic [31:0] i_instr   ,
   input  logic [ 4:0] i_rs1Addr ,
   input  logic [31:0] i_rs1Data ,
+  input  logic [ 4:0] i_rdAddr  ,
+  input  logic [31:0] i_rdData  ,
   input  logic [31:0] i_inA     ,
   input  logic [31:0] i_inB     ,
   input  logic [31:0] i_result
@@ -36,6 +38,8 @@ module LogWriter (
       i_instr    ,
       i_rs1Addr  ,
       i_rs1Data  ,
+      i_rdAddr   ,
+      i_rdData   ,
       i_inA      ,
       i_inB      ,
       i_result
@@ -51,6 +55,8 @@ module LogWriter (
       i_instr    ,
       i_rs1Addr  ,
       i_rs1Data  ,
+      i_rdAddr   ,
+      i_rdData   ,
       i_inA      ,
       i_inB      ,
       i_result
@@ -65,6 +71,8 @@ module LogWriter (
     logic [31:0] i_instr    ,
     logic [ 4:0] i_rs1Addr  ,
     logic [31:0] i_rs1Data  ,
+    logic [ 4:0] i_rdAddr   ,
+    logic [31:0] i_rdData   ,
     logic [31:0] i_inA      ,
     logic [31:0] i_inB      ,
     logic [31:0] i_result
@@ -88,6 +96,10 @@ module LogWriter (
     $display("        inA : 0x%08h", i_inA);
     $display("        inB : 0x%08h", i_inB);
     $display("        result = inA + inB = 0x%08h", i_result);
+`endif
+`ifdef LOG_GPR
+    $display("    GPR :");
+    $display("        rd  : GPR[x%0d] = 0x%08h", i_rdAddr, i_rdData);
 `endif
   endtask
 

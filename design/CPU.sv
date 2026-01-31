@@ -34,9 +34,12 @@ module CPU (
   );
 
   GPRegister GPRegister (
+    .i_clock  (i_clock   ),
     .i_resetn (i_resetn  ),
     .i_rs1Addr(w_rs1Addr ),
-    .o_rs1Data(w_rs1Data )
+    .o_rs1Data(w_rs1Data ),
+    .i_rdAddr (w_rdAddr  ),
+    .i_rdData (w_result  )
   );
 
   ALU ALU (
@@ -55,9 +58,11 @@ module CPU (
     .i_instr    (w_instr   ),
     .i_rs1Addr  (w_rs1Addr ),
     .i_rs1Data  (w_rs1Data ),
-    .i_inA   (w_rs1Data ),
-    .i_inB   (w_imm     ),
-    .i_result(w_result  )
+    .i_rdAddr   (w_rdAddr  ),
+    .i_rdData   (w_result  ),
+    .i_inA      (w_rs1Data ),
+    .i_inB      (w_imm     ),
+    .i_result   (w_result  )
   );
 `endif
 
