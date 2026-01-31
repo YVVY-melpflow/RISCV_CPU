@@ -16,6 +16,9 @@ int main(void) {
     }
   }
 
+  cout << "FFFFFFFF" << endl;
+  count++;
+
   while (count < 256) {
     cout << "00000000" << endl;
     count++;

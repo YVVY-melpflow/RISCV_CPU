@@ -7,7 +7,9 @@ module tb_CPU;
 
   initial begin
     $timeformat(-9, 0, " ns", 10);
-    #100 $finish;
+    @(posedge resetn);
+    @(w_imemData == 32'hFFFFFFFF);
+    $finish;
   end
 
   /* clock */
