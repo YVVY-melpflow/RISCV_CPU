@@ -20,10 +20,4 @@ module GPRegister (
   assign o_rs1Data = (i_rs1Addr == 5'h0) ? 32'h0000_0000
                                          : GPRegister[i_rs1Addr];
 
-`ifdef LOG_GPR
-  always @(i_rs1Addr) begin
-    $strobe("At time %t, rs1(Addr) = %0d, rs1(Data) = 0x%8h", $time, i_rs1Addr, o_rs1Data);
-  end
-`endif
-
 endmodule

@@ -7,23 +7,23 @@ module tb_CPU;
 
   initial begin
     $timeformat(-9, 0, " ns", 10);
-    #95 $finish;
+    #100 $finish;
   end
 
   /* clock */
   initial begin
         clock  = 1'b0;
     #30 clock  = 1'b1;
-    $display("At time %t, CLOCK ASSERT", $time);
+    $display("At time %04d ns, ====== CLOCK   ASSERT ======", $time);
     forever #5 clock = ~clock;
   end
 
   /* reset */
   initial begin
         resetn = 1'b0;
-    $display("At time %t, RESET ASSERT", $time);
+    $display("At time %04d ns, ====== RESET   ASSERT ======", $time);
     #15 resetn = 1'b1;
-    $display("At time %t, RESET DEASSERT", $time);
+    $display("At time %04d ns, ====== RESET DEASSERT ======", $time);
   end
 
   /* CPU */

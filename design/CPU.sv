@@ -10,6 +10,7 @@ module CPU (
 );
 
   logic [31:0] w_PC     ;
+  logic [31:0] w_instr  ;
   logic [ 4:0] w_rs1Addr;
   logic [31:0] w_rs1Data;
   logic [ 4:0] w_rdAddr ;
@@ -23,9 +24,10 @@ module CPU (
   );
 
   assign o_imemAddr = w_PC;
+  assign w_instr    = i_imemData;
 
   Decoder Decoder (
-    .i_instr  (i_imemData),
+    .i_instr  (w_instr   ),
     .o_rs1Addr(w_rs1Addr ),
     .o_rdAddr (w_rdAddr  ),
     .o_imm    (w_imm     )
@@ -43,10 +45,20 @@ module CPU (
     .o_result(w_result  )
   );
 
-`ifdef LOG_IMEM
-  always @(o_imemAddr) begin
-    $strobe("At time %t, addr = 0x%8h, data = 0x%8h", $time, o_imemAddr, i_imemData);
-  end
+`ifdef LOG_OUT
+  LogWriter LogWriter (
+    .i_clock    (i_clock   ),
+    .i_resetn   (i_resetn  ),
+    .i_PC       (w_PC      ),
+    .i_imemAddr (o_imemAddr),
+    .i_imemData (i_imemData),
+    .i_instr    (w_instr   ),
+    .i_rs1Addr  (w_rs1Addr ),
+    .i_rs1Data  (w_rs1Data ),
+    .i_inA   (w_rs1Data ),
+    .i_inB   (w_imm     ),
+    .i_result(w_result  )
+  );
 `endif
 
 endmodule

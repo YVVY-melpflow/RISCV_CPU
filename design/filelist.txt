@@ -3,3 +3,5 @@
 ../design/Decoder.sv
 ../design/GPRegister.sv
 ../design/ALU.sv
+
+../design/LogWriter.sv
