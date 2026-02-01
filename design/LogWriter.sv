@@ -79,7 +79,11 @@ module LogWriter (
   );
 
 `ifdef LOG_TEST
+  if (i_rdAddr == 5'd0) begin
+    $display("PC = 0x%08h, x%0d = 0x00000000", i_PC, i_rdAddr);
+  end else begin
     $display("PC = 0x%08h, x%0d = 0x%08h", i_PC, i_rdAddr, i_rdData);
+  end
 `else
     $display("Cycle %0d :", cycle_count);
 `ifdef LOG_PC

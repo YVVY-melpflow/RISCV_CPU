@@ -1,4 +1,5 @@
 mem/imem.txt
+sim/*.diff
 sim/*.log
 sim/my_design
 testcode/*.mem
