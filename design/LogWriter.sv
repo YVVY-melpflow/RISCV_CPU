@@ -77,6 +77,10 @@ module LogWriter (
     logic [31:0] i_inB      ,
     logic [31:0] i_result
   );
+
+`ifdef LOG_TEST
+    $display("PC = 0x%08h, x%0d = 0x%08h", i_PC, i_rdAddr, i_rdData);
+`else
     $display("Cycle %0d :", cycle_count);
 `ifdef LOG_PC
     $display("    PC = 0x%08h", i_PC);
@@ -100,6 +104,7 @@ module LogWriter (
 `ifdef LOG_GPR
     $display("    GPR :");
     $display("        rd  : GPR[x%0d] = 0x%08h", i_rdAddr, i_rdData);
+`endif
 `endif
   endtask
 
