@@ -1,14 +1,14 @@
 module ProgramCounter (
-  input  logic        clock ,
-  input  logic        resetn,
-  output logic [31:0] out
+  input  logic        i_clock ,
+  input  logic        i_resetn,
+  output logic [31:0] o_PC
 );
 
-  always_ff @(posedge clock or negedge resetn) begin
-    if (resetn == 1'b0) begin
-      out <= 32'h0;
+  always_ff @(posedge i_clock or negedge i_resetn) begin
+    if (i_resetn == 1'b0) begin
+      o_PC <= 32'h0;
     end else begin
-      out <= out + 32'h4;
+      o_PC <= o_PC + 32'h4;
     end
   end
 

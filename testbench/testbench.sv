@@ -1,20 +1,20 @@
 module CPU_tb;
 
-  logic        clock ;
-  logic        resetn;
+  logic        clock      ;
+  logic        resetn     ;
   logic [31:0] cpuInstAddr;
-  logic [31:0] imemData;
+  logic [31:0] imemData   ;
 
   CPU myCPU(
-    .clock (clock ),
-    .resetn(resetn),
-    .instAddr(cpuInstAddr),
-    .instData(imemData)
+    .i_clock   (clock      ),
+    .i_resetn  (resetn     ),
+    .i_instData(imemData   ),
+    .o_instAddr(cpuInstAddr)
   );
 
   InstructionMemory imem(
-    .addr(cpuInstAddr),
-    .data(imemData)
+    .i_addr(cpuInstAddr),
+    .o_data(imemData   )
   );
 
 
