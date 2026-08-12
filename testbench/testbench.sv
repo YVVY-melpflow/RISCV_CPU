@@ -2,11 +2,21 @@ module CPU_tb;
 
   logic        clock ;
   logic        resetn;
+  logic [31:0] cpuInstAddr;
+  logic [31:0] imemData;
 
   CPU myCPU(
     .clock (clock ),
-    .resetn(resetn)
+    .resetn(resetn),
+    .instAddr(cpuInstAddr),
+    .instData(imemData)
   );
+
+  InstructionMemory imem(
+    .addr(cpuInstAddr),
+    .data(imemData)
+  );
+
 
   initial begin
     $dumpfile("CPU_tb.vcd");
