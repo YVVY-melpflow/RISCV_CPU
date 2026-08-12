@@ -5,7 +5,7 @@ sim: run_sim
 build: run_sim
 
 run_sim: mem
-	iverilog -o run_sim ../design/ProgramCounter.sv ../design/CPU.sv ../testbench/testbench.sv ../testbench/InstructionMemory.sv -g 2012 -Wall
+	iverilog -o run_sim -f ../design/filelist.f -f ../testbench/filelist.f -g 2012 -Wall
 
 mem:
 	@echo "00000000" >  ../memory/imem.txt
