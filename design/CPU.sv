@@ -5,10 +5,25 @@ module CPU (
   output logic [31:0] o_instAddr
 );
 
+  logic [ 4:0] l_rs1   ;
+  logic [ 4:0] l_rd    ;
+  logic [ 2:0] l_funct3;
+  logic [ 6:0] l_opcode;
+  logic [11:0] l_imm12 ;
+
   ProgramCounter PC (
     .i_clock (i_clock   ),
     .i_resetn(i_resetn  ),
     .o_PC    (o_instAddr)
+  );
+
+  Decoder decoder (
+    .i_instData(i_instData),
+    .o_rs1     (l_rs1     ),
+    .o_rd      (l_rd      ),
+    .o_funct3  (l_funct3  ),
+    .o_opcode  (l_opcode  ),
+    .o_imm12   (l_imm12   )
   );
 
 endmodule // CPU
