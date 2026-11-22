@@ -1,12 +1,21 @@
 `timescale 1ns / 1ps
 
 module myTestbench;
-  logic clock ;
-  logic resetn;
+  logic        clock   ;
+  logic        resetn  ;
+  logic [31:0] instAddr;
+  logic [31:0] instData;
 
   myCPU u_CPU (
-    .i_clock (clock ),
-    .i_resetn(resetn)
+    .i_clock   (clock   ),
+    .i_resetn  (resetn  ),
+    .i_instData(instData),
+    .o_instAddr(instAddr)
+  );
+
+  instMem u_instMem (
+    .i_addr    (instAddr),
+    .o_data    (instData)
   );
 
   // 波形出力，ログフォーマット，Sim 時間の設定
@@ -43,6 +52,6 @@ module myTestbench;
 
   // ログ出力
   always @(posedge resetn or posedge clock) begin
-    $strobe("[%t] PC = %8x", $time, u_CPU.w_PC);  
+    $strobe("[%t] PC = %8x, instdata = %8x", $time, u_CPU.o_instAddr, u_CPU.i_instData);  
   end
 endmodule
