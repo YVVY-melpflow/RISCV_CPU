@@ -4,7 +4,7 @@ module myTestbench;
   logic clock ;
   logic resetn;
 
-  myCPU iCPU (
+  myCPU u_CPU (
     .i_clock (clock ),
     .i_resetn(resetn)
   );
@@ -43,6 +43,6 @@ module myTestbench;
 
   // ログ出力
   always @(posedge resetn or posedge clock) begin
-    $strobe("[%t] PC = %8x", $time, iCPU.w_PC);  
+    $strobe("[%t] PC = %8x", $time, u_CPU.w_PC);  
   end
 endmodule

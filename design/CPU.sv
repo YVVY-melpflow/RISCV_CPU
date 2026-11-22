@@ -5,7 +5,7 @@ module myCPU (
 
   logic [31:0] w_PC;
 
-  ProgramCounter iProgramCounter (
+  ProgramCounter u_ProgramCounter (
     .i_clock  (i_clock ),
     .i_resetn (i_resetn),
     .o_PC     (w_PC    )
