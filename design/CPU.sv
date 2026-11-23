@@ -8,6 +8,7 @@ module myCPU (
   logic [ 4:0] w_rs1;
   logic [ 4:0] w_rd ;
   logic [11:0] w_imm12;
+  logic [31:0] w_imm32;
 
   ProgramCounter u_ProgramCounter (
     .i_clock   (i_clock   ),
@@ -20,6 +21,11 @@ module myCPU (
     .o_rs1     (w_rs1     ),
     .o_rd      (w_rd      ),
     .o_imm12   (w_imm12   )
+  );
+
+  immExtender u_immExtender (
+    .i_imm12   (w_imm12   ),
+    .o_imm32   (w_imm32   )
   );
 
 endmodule

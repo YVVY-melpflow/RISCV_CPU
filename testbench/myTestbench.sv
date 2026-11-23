@@ -5,6 +5,8 @@ module myTestbench;
   logic        resetn  ;
   logic [31:0] instAddr;
   logic [31:0] instData;
+  
+  int signed   simm;
 
   myCPU u_CPU (
     .i_clock   (clock   ),
@@ -51,8 +53,9 @@ module myTestbench;
   end
 
   // ログ出力
+  assign simm = u_CPU.w_imm32;
   always @(posedge resetn or posedge clock) begin
-    $strobe("[%t] PC = %8x, instdata = %8x, rs1 = %2d, rd = %2d, imm12 = %6d", 
-             $time, u_CPU.o_instAddr, u_CPU.i_instData, u_CPU.w_rs1, u_CPU.w_rd, u_CPU.w_imm12);  
+    $strobe("[%t] PC = %8x, instdata = %8x, rs1 = %2d, rd = %2d, imm32 = %6d", 
+             $time, u_CPU.o_instAddr, u_CPU.i_instData, u_CPU.w_rs1, u_CPU.w_rd, simm);  
   end
 endmodule
