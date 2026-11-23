@@ -19,6 +19,6 @@ module registerFile (
     end
   end
 
-  assign o_rs1Data = (i_rs1Index == '0) ? '0 : regFile[i_rdIndex];
+  assign o_rs1Data = (i_rs1Index == '0) ? '0 : regFile[i_rs1Index];
 
 endmodule
