@@ -52,6 +52,7 @@ module myTestbench;
 
   // ログ出力
   always @(posedge resetn or posedge clock) begin
-    $strobe("[%t] PC = %8x, instdata = %8x", $time, u_CPU.o_instAddr, u_CPU.i_instData);  
+    $strobe("[%t] PC = %8x, instdata = %8x, rs1 = %2d, rd = %2d, imm12 = %6d", 
+             $time, u_CPU.o_instAddr, u_CPU.i_instData, u_CPU.w_rs1, u_CPU.w_rd, u_CPU.w_imm12);  
   end
 endmodule

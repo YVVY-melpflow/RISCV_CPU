@@ -12,14 +12,7 @@ sim: runsim
 	vvp runsim
 
 $(IMEM_DATA):
-	echo 00008888  > $(IMEM_DATA)
-	echo 11119999 >> $(IMEM_DATA)
-	echo 2222AAAA >> $(IMEM_DATA)
-	echo 3333BBBB >> $(IMEM_DATA)
-	echo 4444CCCC >> $(IMEM_DATA)
-	echo 5555DDDD >> $(IMEM_DATA)
-	echo 6666EEEE >> $(IMEM_DATA)
-	echo 7777FFFF >> $(IMEM_DATA)
+	make memdata -C ../test
 
 clean:
 	rm -f runsim *.vcd $(IMEM_DATA)
