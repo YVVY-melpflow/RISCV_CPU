@@ -1,14 +1,15 @@
-IMEM_DATA := ../memory/InstMemData.txt
+CASE      := $(basename $(notdir $(wildcard ../test/*.s)))
+IMEM_DATA := $(addsuffix _mem.txt,$(CASE))
 
-.PHONY: clean memdata
+.PHONY: clean 
 
-memdata: $(IMEM_DATA)
+all: $(IMEM_DATA)
 
-$(IMEM_DATA): ADDI.out
+%_mem.txt: %.out
 	riscv32-unknown-linux-gnu-objdump -d -j .text $< | grep -E '^\s*[0-9a-f]+:' | cut -f2 > $@
 
-ADDI.out: ADDI.s
+%.out: %.s
 	riscv32-unknown-linux-gnu-as $< -o $@
 
 clean:
-	rm -f ADDI.out $(IMEM_DATA)
+	rm -f *.out *_mem.txt
