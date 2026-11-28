@@ -1,7 +1,7 @@
 CASE      := $(basename $(notdir $(wildcard ../test/*.s)))
 IMEM_DATA := $(addsuffix _mem.txt,$(CASE))
 
-.PHONY: clean 
+.PHONY: all clean 
 
 all: $(IMEM_DATA)
 
