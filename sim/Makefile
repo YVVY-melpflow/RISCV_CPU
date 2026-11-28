@@ -11,19 +11,16 @@ IMEM_DATA := ../memory/InstMemData.txt
 ../test/%_mem.txt: ../test/%.s
 	make -C ../test $*_mem.txt
 
-runsim: $(RTL_LIST) $(RTL) $(TB) $(IMEM_DATA)
+runsim: $(RTL_LIST) $(RTL) $(TB)
 	iverilog -g2012 -o $@ -f $(RTL_LIST) $(TB)
 
-sim: runsim
+sim: ../test/$(NOW_CASE)_mem.txt runsim
+	cp $< $(IMEM_DATA)
 	vvp runsim
 
-$(IMEM_DATA): | ../test/$(NOW_CASE)_mem.txt
+check-%: ../test/%_mem.txt runsim
 	cp $< $(IMEM_DATA)
-
-check-%: ../test/%_mem.txt
-	cp $< $(IMEM_DATA)
-	make runsim
-	make sim | tee sim_log.txt
+	vvp runsim > sim_log.txt 2>&1
 	grep -o "PC.*" sim_log.txt > actual.txt
 	@if diff -q actual.txt ../test/$*_exp.txt > /dev/null; then \
 		echo $* Pass; \
