@@ -27,7 +27,7 @@ module myTestbench;
   
     $timeformat(-9, 1, " ns", 9);
 
-    #100
+    #125
     $finish;
   end
 
@@ -54,8 +54,8 @@ module myTestbench;
 
   // ログ出力
   assign result = u_CPU.w_result;
-  always @(posedge resetn or posedge clock) begin
-    $strobe("[%t] PC = %8x, instdata = %8x, rd = %2d, result = %6d", 
-             $time, u_CPU.o_instAddr, u_CPU.i_instData, u_CPU.w_rd, result);  
+  always @(posedge clock) begin
+    $display("[%t] PC = %8x, x%0d <= %0d", 
+             $time, u_CPU.o_instAddr, u_CPU.w_rd, result);  
   end
 endmodule
